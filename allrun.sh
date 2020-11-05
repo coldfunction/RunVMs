@@ -13,14 +13,14 @@ done
 
 #for i in $(seq 1 $END);
 #do
-#	#./template_vm_start_again.sh ${i} > ${1}.bootok
-#	./generic_vm.sh ${i} > ${1}.bootok
+#	./template_vm_start_again.sh ${i} > ${1}.bootok
+	#./generic_vm.sh ${i} > ${1}.bootok
 #done
 
 #for i in $(seq 1 $END);
 #do
-	#./template_vm_start_again.sh ${i} > ${1}.bootok
-#	./generic_vm_again.sh ${i} > ${1}.bootok
+#	./template_vm_start_again.sh ${i} > ${1}.bootok
+	#./generic_vm_again.sh ${i} > ${1}.bootok
 #done
 
 #sleep 500

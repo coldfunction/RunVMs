@@ -11,8 +11,7 @@ while i < int(bootNum):
    filename = str(i+1)+".bootok"
    f = open(filename)
    lines = f.read()
-#   num = lines.find("root@ubuntu:/home/ubuntu#")
-   num = lines.find("ubuntu@ubuntu")
+   num = lines.find("root@ubuntu:/home/ubuntu#")
    if num > 0 :
       i = i+1
    f.close()   
