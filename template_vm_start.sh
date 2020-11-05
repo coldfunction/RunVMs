@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-set timeout -1
+set timeout 30
 set times 0;
 set i [lindex $argv 0];
 set port [expr $i+8800];
@@ -33,7 +33,7 @@ while { $times < 300 } {
 #while { $times < 300 } {
 #   expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-#	"ubuntu login" {send "ubuntu\n"; set times 30000;}
+#	"ubuntu login:" {send "ubuntu\n"; set times 30000;}
  #  }
   # set times [ expr $times+0];
 #}
@@ -42,7 +42,7 @@ while { $times < 300 } {
 #while { $times < 300 } {
 #   expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-#	"Password" {send "ubuntu\n"; set times 30000;}
+#	"Password:" {send "ubuntu\n"; set times 30000;}
 #   }
 #   set times [ expr $times+0];
 #}
