@@ -1,0 +1,19 @@
+sudo mount -t tmpfs -o size=1024M tmpfs co_img/ramdisk000
+sudo sh ramdisk.sh 50
+sudo sh cpstate.sh 50
+
+
+sudo bash run_vm2.sh -o backed_memory -v 1 -r 2G -m co_img/newsnapshot.qcow2 -t co_img/ramdisk000 -i 1
+sudo bash qmp.sh -o save -s /tmp/qmp-1.sock -t co_img/ramdisk000/
+sudo bash qmp.sh -o quit -s /tmp/qmp-1.sock
+
+
+copy co_img/ramdisk000 to others
+
+
+
+
+sudo bash run_vm2.sh -o template -v 1 -r 2G -m co_img/newsnapshot.qcow2 -t co_img/ramdisk0 -i 1
+sudo bash run_vm2.sh -o template -v 1 -r 2G -m co_img/newsnapshot.qcow2 -t co_img/ramdisk0 -i 2
+
+

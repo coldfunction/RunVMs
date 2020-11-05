@@ -1,0 +1,1 @@
+./x86_64-softmmu/qemu-system-x86_64 -cdrom ubuntu-16.04-desktop-amd64.iso ubuntu1604.qcow2 -enable-kvm -m 6G
