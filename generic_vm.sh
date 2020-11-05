@@ -1,4 +1,5 @@
 #!/usr/bin/expect
+set timeout 800
 set times 0;
 set i [lindex $argv 0];
 set port [expr $i+8800];
@@ -46,7 +47,33 @@ while { $times < 300 } {
    set times [ expr $times+0];
 }
 
+set times 0;
+while { $times < 300 } {
+   expect {
+	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+	"ubuntu@ubuntu:~$" {send "sudo su\n"; set times 30000;}
+   }
+   set times [ expr $times+0];
+}
+
+set times 0;
+while { $times < 300 } {
+   expect {
+	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+	"password for ubuntu:" {send "ubuntu\n"; set times 30000;}
+   }
+   set times [ expr $times+0];
+}
 
 
+
+set times 0;
+while { $times < 300 } {
+   expect {
+	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+	"root@ubuntu:/home/ubuntu#" {send "bash bodytrack.sh\r"; set times 30000;}
+   }
+   set times [ expr $times+0];
+}
 
 
