@@ -9,20 +9,31 @@ run()
         local port=$(( i + 8800 )) 
         local sdir="/tmp"
 
-        $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
+        #$qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
+         #     -cpu host,host-cache-info=on \
+          #    -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
+           #   -m   ${ram},slots=4,maxmem=10240M\
+            #  -drive file=${img},if=virtio,format=raw \
+             # -netdev tap,ifname=qtap0,id=mytap,script=no,downscript=no,vhost=on\
+              #-device virtio-net,netdev=mytap\
+              #-qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
+              #-serial telnet:127.0.0.1:${port},server,nowait \
+              #-parallel none \
+              #-serial none \
+              #-vga none \
+              #-nographic \
+              #-nodefaults
+        
+	$qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
               -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
               -m   ${ram},slots=4,maxmem=10240M\
-              -drive file=${img},if=virtio,format=raw \
-              -netdev tap,ifname=qtap0,id=mytap,script=no,downscript=no,vhost=on\
+              -drive file=${img},if=virtio \
+              -netdev tap,ifname=qtap${i},id=mytap,script=no,downscript=no,vhost=on\
               -device virtio-net,netdev=mytap\
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
-              -serial telnet:127.0.0.1:${port},server,nowait \
-              -parallel none \
-              -serial none \
-              -vga none \
-              -nographic \
-              -nodefaults
+	      -serial telnet:127.0.0.1:${port},server,nowait \
+              -nographic 
 }
 
 run_by_memory_backend()
