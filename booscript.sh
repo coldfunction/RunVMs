@@ -11,5 +11,5 @@ sudo bash run_vm2.sh -o reg -v 1 -r 2G -m co_img/newsnapshot${i}.qcow2 -t co_img
 
 #./atomic_script2.sh ${i}
 #./template_vm_start.sh ${i} > ${1}.bootok &
-./generic_vm.sh ${i} > ${1}.bootok &
+#./generic_vm.sh ${i} > ${1}.bootok &
 #./template_vm_start_again.sh ${i} > ${1}.bootok &

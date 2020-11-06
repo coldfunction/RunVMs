@@ -71,7 +71,7 @@ set times 0;
 while { $times < 300 } {
    expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-	"root@ubuntu:/home/ubuntu#" {send "bash bodytrack.sh\r"; set times 30000;}
+	"root@ubuntu:/home/ubuntu#" {send "bash bodytrack.sh\n\n\n\n\n\n\n\n\n"; set times 30000;}
    }
    set times [ expr $times+0];
 }
