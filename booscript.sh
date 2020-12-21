@@ -6,7 +6,7 @@ i=$1
 
 #sudo bash run_vm2.sh -o template -v 1 -r 2G -m co_img/newsnapshot${i}.qcow2 -t co_img/ramdisk${i} -i ${i}
 #sudo bash run_vm2.sh -o template -v 1 -r 2G -m co_img/newsnapshot${i}.qcow2 -t co_img/ramdisk1 -i ${i}
-sudo bash run_vm2.sh -o reg -v 1 -r 2G -m co_img/newsnapshot${i}.qcow2 -t co_img/ramdisk${i} -i ${i}
+sudo bash run_vm2.sh -o reg -v 1 -r 1G -m co_img/newsnapshot${i}.qcow2 -t co_img/ramdisk000 -i ${i}
 
 
 #./atomic_script2.sh ${i}

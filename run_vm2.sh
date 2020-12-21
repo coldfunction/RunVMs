@@ -117,7 +117,8 @@ tdir=""
 idx=0
 #qemu=$(which qemu-system-x86_64)
 #qemu="/home/ubuntu/cocotion/vm_templating/qemu/build/x86_64-softmmu/qemu-system-x86_64"
-qemu="/home/ubuntu/cocotion/vm_templating/new_qemu/qemu/build/x86_64-softmmu/qemu-system-x86_64"
+#qemu="/home/ubuntu/cocotion/vm_templating/new_qemu/qemu/build/x86_64-softmmu/qemu-system-x86_64"
+qemu=$(which qemu-system-x86_64)
 
 while getopts "o:v:r:m:t:i:h" opt; do
         case ${opt} in

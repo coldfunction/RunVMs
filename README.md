@@ -8,5 +8,10 @@
 * sudo sh cpstate.sh 50
 * sudo bash allrun.sh 50
 
-## Generic VM boot
-* sudo bash run_vm2.sh -o reg -v 1 -r 2G -m co_img/newsnapshot.qcow2 -t co_img/ramdisk000 -i 1
+## Generic VM boot - do nothing
+* sudo mount -t nfs4 100.73.41.103:/home/ubuntu/vmcontainer/oci /mnt/host3_nfs/oci
+* sudo mount -t nfs4 100.73.41.103:/home/ubuntu/directVisor /mnt/host3_nfs/directVisor
+* sudo sh qtapall.sh 50
+* sudo sh cpsnapimg.sh 50
+* sudo bash allrun.sh 50
+
