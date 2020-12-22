@@ -6,6 +6,12 @@ import subprocess
 #out = out_text.split()
 #fp = open("memreco.txt", "a")
 
+import os
+
+#echo 50000 > /sys/kernel/mm/ksm/pages_to_scan
+os.system("echo 50000 > /sys/kernel/mm/ksm/pages_to_scan")
+os.system("echo 1 > /sys/kernel/mm/ksm/run")
+
 out_bytes = subprocess.check_output(['free','-m'])
 out_text = out_bytes.decode('utf-8')
 out = out_text.split()
@@ -23,5 +29,6 @@ while i<2480:
     print(nowmem, flush=True)
     time.sleep(1)
     i = i + 1
+    os.system("echo 1 > /sys/kernel/mm/ksm/run")
 
 #fp.close();
