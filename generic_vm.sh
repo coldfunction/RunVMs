@@ -46,7 +46,23 @@ while { $times < 300 } {
    set times [ expr $times+0];
 }
 
+##################################
+#set times 0;
+#while { $times < 300 } {
+#   expect {
+	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+#	"ubuntu@ubuntu:~$" {send "sh flushall.sh\r"; set times 30000;}
+ #  }
+  # set times [ expr $times+0];
+#}
 
 
-
+#set times 0;
+#while { $times < 300 } {
+#   expect {
+	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+#	"OK" {send "python3 SETRedis_db.py 10000\r"; set times 30000;}
+#   }
+#   set times [ expr $times+0];
+#}
 

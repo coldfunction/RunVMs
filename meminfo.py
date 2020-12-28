@@ -9,8 +9,8 @@ import subprocess
 import os
 
 #echo 50000 > /sys/kernel/mm/ksm/pages_to_scan
-os.system("echo 50000 > /sys/kernel/mm/ksm/pages_to_scan")
-os.system("echo 1 > /sys/kernel/mm/ksm/run")
+#os.system("echo 50000 > /sys/kernel/mm/ksm/pages_to_scan")
+#os.system("echo 1 > /sys/kernel/mm/ksm/run")
 
 out_bytes = subprocess.check_output(['free','-m'])
 out_text = out_bytes.decode('utf-8')

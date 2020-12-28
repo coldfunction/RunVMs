@@ -20,10 +20,14 @@ while i < int(bootNum):
    lines = f.read()
 #   num = lines.find("root@ubuntu:/home/ubuntu#")
 #   num = lines.find("ubuntu@ubuntu")
-   num = lines.find("Password")
+   #num = lines.find("Password")
+   num = lines.find("Ubuntu 16.04.6 LTS ubuntu ttyS0")
    if num > 0 :
       i = i+1
-   f.close()   
+      f.close() 
+   else :
+      f.close()
+      continue  
 end = time.time()
 
 f = open("allvmfinishBoot.txt", "w")
