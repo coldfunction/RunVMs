@@ -51,6 +51,9 @@ run_by_memory_backend()
         local max_vcpu=$(( vcpu - 1 ))
         local port=$(( i + 8800 ))
         local sdir="/tmp"
+	
+        octet=$(printf '%.2x\n' ${i})
+	mac="52:54:00:12:34:${octet}"
 
         $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
@@ -60,7 +63,7 @@ run_by_memory_backend()
               -numa node,nodeid=0,cpus=0-${max_vcpu},memdev=mem0 \
               -drive file=${img},if=virtio \
               -netdev tap,ifname=qtap${i},id=mytap,script=no,downscript=no,vhost=on\
-              -device virtio-net,netdev=mytap\
+              -device virtio-net,netdev=mytap,mac=${mac}\
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
 	      -serial telnet:127.0.0.1:${port},server,nowait \
               -nographic 

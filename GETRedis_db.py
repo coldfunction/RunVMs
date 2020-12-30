@@ -15,7 +15,7 @@ while i >= 0:
     #key = random.randint(0,299999)
     #subprocess.run(["redis-cli", "SET", key, payload], shell=True)
     #subprocess.run(["redis-cli", "SET", key, "QQQ"], shell=True)
-    print(key)
+    #print(key)
     try:
         out_bytes = subprocess.check_output(['redis-cli','-h',IP,'GET',str(key)])
     except:
@@ -30,21 +30,21 @@ while i >= 0:
     if lines == "b'\\n'" :
         print("Retry@@!")
         continue
-#    num = lines.find("Connection refused")
- #   num2 = lines.find("error")
-  #  num3 = lines.find("(nil)")
-   # num4 = lines.find("Error")
-   # num5 = lines.find("Could not connect to Redis")
-   # if num > 0 or num2 > 0 or num3>0 or num4>0 or num5>0:
-   #     print("Retry@@!")
-   #     print(num)
-   #     print(num2)
-   #     print(num3)
-   #     print(num4)
-   #     print(num5)
-   #     print(lines)
+    num = lines.find("Connection refused")
+    num2 = lines.find("(error)")
+    num3 = lines.find("(nil)")
+    num4 = lines.find("Error")
+    num5 = lines.find("Could not connect to Redis")
+    if num > 0 or num2 > 0 or num3>0 or num4>0 or num5>0:
+        print("Retry@@!")
+        print(num)
+        print(num2)
+        print(num3)
+        print(num4)
+        print(num5)
+        print(lines)
         #break
-  #      continue
+        continue
     #print(i)
     i = i-1
     key = random.randint(0,299999)

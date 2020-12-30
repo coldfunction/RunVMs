@@ -3,8 +3,9 @@
 END=$1
 
 
-for i in $(seq 15 $END);
+for i in $(seq 3 $END);
 do
-	python3 SETRedis_db.py 100.73.41.2${i} 300000
+	octet=$(printf '%.2d\n' ${i})
+	python3 SETRedis_db.py 100.73.41.2${octet} 300000
 done
 

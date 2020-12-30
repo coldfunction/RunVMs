@@ -2,6 +2,7 @@
 set times 0;
 set i [lindex $argv 0];
 set port [expr $i+8800];
+set ip [expr $i+200]
 #spawn telnet 127.0.0.1 $port
 
 while { $times < 300 } {
@@ -41,19 +42,35 @@ set times 0;
 while { $times < 300 } {
    expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-	"Password:" {send "ubuntu\r"; set times 30000;}
+	"Password:" {send "ubuntu\r\r\r\r\r\r\r\r\r\r\rsudo su\n"; set times 30000;}
    }
    set times [ expr $times+0];
 }
+
+expect "password"
+send "ubuntu\n"
+
+#expect "ubuntu#"
+#send "sh allreplace.sh $ip"
+#send "/etc/init.d/redis-server stop"
 
 ##################################
 #set times 0;
 #while { $times < 300 } {
 #   expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-#	"ubuntu@ubuntu:~$" {send "sh flushall.sh\r"; set times 30000;}
- #  }
-  # set times [ expr $times+0];
+#	"$" {send "sudo su\n"; set times 30000;}
+#   }
+#   set times [ expr $times+0];
+#}
+
+#set times 0;
+#while { $times < 300 } {
+#   expect {
+#	#"Press Enter for maintenance" {send "\r"; set times 30000;}
+#	"[sudo] password for ubuntu:" {send "ubuntu\r\r\r\r\r"; set times 30000;}
+#   }
+#   set times [ expr $times+0];
 #}
 
 
