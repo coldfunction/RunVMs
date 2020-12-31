@@ -88,6 +88,7 @@ run_by_template()
         local port=$(( i + 8800 )) 
         local sdir="/tmp"
         local port2=$(( i + 4000 )) 
+        local port3=$(( i + 5000 )) 
 
         $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
@@ -100,6 +101,7 @@ run_by_template()
               -device virtio-net,netdev=mytap\
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
               -serial telnet:127.0.0.1:${port},server,nowait \
+              -monitor telnet:127.0.0.1:${port3},server,nowait \
               -incoming "exec:cat ${tdir}/state" \
               -incoming tcp:0:${port2} \
               -nographic 

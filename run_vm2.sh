@@ -85,6 +85,7 @@ run_by_template()
         local max_vcpu=$(( vcpu - 1 ))
         local port=$(( i + 8800 )) 
         local sdir="/tmp"
+        local port3=$(( i + 5000 )) 
 
         $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
@@ -98,6 +99,7 @@ run_by_template()
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
               -serial telnet:127.0.0.1:${port},server,nowait \
               -incoming "exec:cat ${tdir}/state" \
+              -monitor telnet:127.0.0.1:${port3},server,nowait \
               -nographic 
               #-parallel none \
               #-serial none \

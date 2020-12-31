@@ -18,8 +18,8 @@ while { $times < 300 } {
    set times [ expr $times+0];
 }
 
-expect "#"
-send "sh y.sh\n"
+#expect "#"
+#send "sh y.sh\n"
 
 
 

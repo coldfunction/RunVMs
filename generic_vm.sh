@@ -50,8 +50,8 @@ while { $times < 300 } {
 expect "password"
 send "ubuntu\n"
 
-expect "ubuntu#"
-send "sh allreplace.sh $ip"
+#expect "ubuntu#"
+#send "sh allreplace.sh $ip"
 #send "/etc/init.d/redis-server stop"
 
 ##################################
