@@ -1,19 +1,17 @@
 #!/bin/bash
 
 END=$1
-
-#python3 meminfo.py > memreco.txt &
-#python3 checkboot.py $END &
-
-bash allget.sh $END &
-
+bash allget_container.sh $END &
 for i in $(seq 1 $END);
 do
-	(time bash booscript.sh ${i}) &> time0.${i}.txt &
-	#(time bash booscript_create_template.sh ${i}) &> time0.${i}.txt &
-	#(time bash booscript_run_template.sh ${i}) &> time0.${i}.txt &
-	echo "boot ${i} okok";
+        #docker start redis-test${i} &	
+        docker start redis-lab${i} &	
+	
+        #echo "boot ${i} okok";
 done
+#./a.out
+#docker-compose start &
+
 
 #for i in $(seq 1 $END);
 #do

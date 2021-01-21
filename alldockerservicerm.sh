@@ -2,16 +2,11 @@
 
 END=$1
 
-#python3 meminfo.py > memreco.txt &
-#python3 checkboot.py $END &
-
-bash allget.sh $END &
 
 for i in $(seq 1 $END);
 do
-	(time bash booscript.sh ${i}) &> time0.${i}.txt &
-	#(time bash booscript_create_template.sh ${i}) &> time0.${i}.txt &
-	#(time bash booscript_run_template.sh ${i}) &> time0.${i}.txt &
+	docker service update --replicas 0 redis_redis-test${i}	
+	docker service rm redis_redis-test${i}	
 	echo "boot ${i} okok";
 done
 

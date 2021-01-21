@@ -7,8 +7,8 @@ python3 checkboot.py $END &
 
 for i in $(seq 1 $END);
 do
-	#(time bash booscript.sh ${i}) &> time0.${i}.txt &
-	(time bash booscript_create_template.sh ${i}) &> time0.${i}.txt &
+	(time bash booscript.sh ${i}) &> time0.${i}.txt &
+	#(time bash booscript_create_template.sh ${i}) &> time0.${i}.txt &
 	echo "boot ${i} okok";
 done
 

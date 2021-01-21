@@ -11,6 +11,7 @@ run()
         local port=$(( i + 8800 )) 
         local sdir="/tmp"
         local port2=$(( i + 4000 )) 
+        local port3=$(( i + 5000 )) 
 	
 	octet=$(printf '%.2x\n' ${i})
 	mac="52:54:00:12:34:${octet}"
@@ -33,12 +34,13 @@ run()
 	$qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
               -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
-              -m   ${ram},slots=4,maxmem=10240M\
+              -m   ${ram},slots=4,maxmem=102400M\
               -drive file=${img},if=virtio \
               -netdev tap,ifname=qtap${i},id=mytap,script=no,downscript=no,vhost=on\
               -device virtio-net,netdev=mytap,mac=${mac}\
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
 	      -serial telnet:127.0.0.1:${port},server,nowait \
+              -monitor telnet:127.0.0.1:${port3},server,nowait \
               -incoming tcp:0:${port2} \
               -nographic 
 }
@@ -60,7 +62,7 @@ run_by_memory_backend()
         $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
               -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
-              -m   ${ram},slots=4,maxmem=10240M\
+              -m   ${ram},slots=4,maxmem=102400M\
               -object memory-backend-file,id=mem0,size=${ram},mem-path=${tdir}/memory,share=on \
               -numa node,nodeid=0,cpus=0-${max_vcpu},memdev=mem0 \
               -drive file=${img},if=virtio \
@@ -93,7 +95,7 @@ run_by_template()
         $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
               -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
-              -m   ${ram},slots=4,maxmem=10240M\
+              -m   ${ram},slots=4,maxmem=102400M\
               -object memory-backend-file,id=mem0,size=${ram},mem-path=${tdir}/memory,share=off \
               -numa node,nodeid=0,cpus=0-${max_vcpu},memdev=mem0 \
               -drive file=${img},if=virtio \

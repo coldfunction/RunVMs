@@ -11,7 +11,7 @@ start = time.time()
 #i=int(SETNUM) - 1
 i=0
 #key = random.randint(0,299999)
-#key = 600000
+#key = 299999
 key = 0
 while i >= 0:
     #key = str(i)
@@ -21,7 +21,7 @@ while i >= 0:
     #print(key)
     try:
         #out_bytes = subprocess.check_output(['redis-cli','-h',IP,'GET',str(key)])
-        out_bytes = subprocess.check_output(['redis-cli','-h',IP,'PING'])
+        out_bytes = subprocess.check_output(['redis-cli','-h','127.0.0.1','-p',IP,'PING'])
     except:
         print("Retry!") 
         #start = time.time() 

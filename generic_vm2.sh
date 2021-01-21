@@ -33,26 +33,11 @@ set times 0;
 while { $times < 300 } {
    expect {
 	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-	"ubuntu login:" {send "ubuntu\r"; set times 30000;}
+	"Map Server is now online" {send "\r"; set times 30000;}
    }
    set times [ expr $times+0];
 }
 
-set times 0;
-while { $times < 300 } {
-   expect {
-	#"Press Enter for maintenance" {send "\r"; set times 30000;}
-	"Password:" {send "ubuntu\r\r\r\r\r\r\r\r\r\r\rsudo su\n"; set times 30000;}
-   }
-   set times [ expr $times+0];
-}
-
-expect "password"
-send "ubuntu\n"
-
-expect "ubuntu#"
-send "sh allreplace.sh $ip"
-#send "/etc/init.d/redis-server stop"
 
 ##################################
 #set times 0;
