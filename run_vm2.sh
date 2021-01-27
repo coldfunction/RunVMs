@@ -40,6 +40,7 @@ run()
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
 	      -serial telnet:127.0.0.1:${port},server,nowait \
               -monitor telnet:127.0.0.1:${port3},server,nowait \
+              -cocotion_debug \
               -nographic 
 }
 
@@ -103,6 +104,7 @@ run_by_template()
               -incoming "exec:cat ${tdir}/state" \
               -monitor telnet:127.0.0.1:${port3},server,nowait \
               -osnet_init_ram_state \
+              -cocotion_debug \
               -nographic 
               #-parallel none \
               #-serial none \
@@ -131,7 +133,8 @@ idx=0
 #qemu=$(which qemu-system-x86_64)
 #qemu="/home/ubuntu/cocotion/vm_templating/qemu/build/x86_64-softmmu/qemu-system-x86_64"
 #qemu="/home/ubuntu/cocotion/vm_templating/new_qemu/qemu/build/x86_64-softmmu/qemu-system-x86_64"
-qemu=$(which qemu-system-x86_64)
+#qemu=$(which qemu-system-x86_64)
+qemu=/home/ubuntu/vmtemplate/RunVMs/qemu-4.1.0/x86_64-softmmu/qemu-system-x86_64
 
 while getopts "o:v:r:m:t:i:h" opt; do
         case ${opt} in
