@@ -21,8 +21,8 @@ while i < int(bootNum):
 #   num = lines.find("root@ubuntu:/home/ubuntu#")
 #   num = lines.find("ubuntu@ubuntu")
    #num = lines.find("Password")
-   #num = lines.find("ubuntu login:")
-   num = lines.find("Ubuntu 16.04.6 LTS ubuntu ttyS0")
+#   num = lines.find("Ubuntu 16.04.6 LTS ubuntu ttyS0")
+   num = lines.find("OK")
    if num > 0 :
       i = i+1
       f.close() 
@@ -31,6 +31,5 @@ while i < int(bootNum):
       continue  
 end = time.time()
 
-f = open("allvmfinishBoot2.txt", "w")
+f = open("container_allvm0toStartedMySQL.txt", "w")
 f.write(str(end-start))
-f.close()

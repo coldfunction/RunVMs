@@ -3,13 +3,20 @@
 END=$1
 
 #python3 meminfo.py > memreco.txt &
+#sh allping.sh $END &
 python3 checkboot.py $END &
+python3 checkboot3.py $END &
+python3 checkserviceTime.py $END &
+python3 check0toSQLstarting.py $END &
+python3 check0toSQLstarted.py $END &
+#sh allping.sh $END &
 
 for i in $(seq 1 $END);
 do
 	(time bash booscript.sh ${i}) &> time0.${i}.txt &
 	#(time bash booscript_create_template.sh ${i}) &> time0.${i}.txt &
 	echo "boot ${i} okok";
+	#sh allping.sh $END &
 done
 
 #for i in $(seq 1 $END);

@@ -29,13 +29,17 @@ run()
               #-vga none \
               #-nographic \
               #-nodefaults
+             
+ #-smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
+	      #-drive if=none,id=drive0,file=${img} \
+	      #-device virtio-blk,drive=drive0 \
         
+	#taskset 0x1 $qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
 	$qemu -machine pc,accel=kvm,kernel_irqchip=on,nvdimm=on \
               -cpu host,host-cache-info=on \
               -smp ${vcpu},cores=${vcpu},threads=1,sockets=1 \
-              -m   ${ram},slots=4,maxmem=102400M\
               -drive file=${img},if=virtio \
-              -netdev tap,ifname=qtap${i},id=mytap,script=no,downscript=no,vhost=on\
+              -netdev tap,ifname=qtap${i},id=mytap,script=no,downscript=no,vhost=on \
               -device virtio-net,netdev=mytap,mac=${mac}\
               -qmp unix:${sdir}/qmp-${i}.sock,server,nowait \
 	      -serial telnet:127.0.0.1:${port},server,nowait \
